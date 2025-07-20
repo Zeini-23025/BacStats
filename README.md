@@ -41,8 +41,53 @@ bac-analytics-app/
 │   │   ├── Home.js         # Composant pour l'interface d'accueil/recherche
 │   │   └── Statistics.js   # Composant pour l'affichage de l'analyse statistique
 │   └── ...                 # Autres fichiers liés à React (CSS, tests, etc.)
+├── .github/
+│   └── workflows/
+│       └── deploy.yml      # Configuration CI/CD pour GitHub Pages
 ├── package.json            # Métadonnées et dépendances du projet
 ├── package-lock.json       # Enregistre les versions exactes des dépendances
 ├── README.md               # Documentation du projet (ce fichier)
 └── ...                     # Autres fichiers de configuration (.gitignore, etc.)
 ```
+
+## Installation et Développement
+
+### Prérequis
+- Node.js (version 16 ou supérieure)
+- npm ou yarn
+
+### Installation
+```bash
+# Cloner le repository
+git clone https://github.com/Zeini-23025/BacStats.git
+cd BacStats/bac-analytics-app
+
+# Installer les dépendances
+npm install
+
+# Lancer l'application en mode développement
+npm start
+```
+
+L'application sera accessible à l'adresse `http://localhost:3000`.
+
+## Déploiement
+
+### Déploiement automatique avec GitHub Actions
+L'application est configurée pour un déploiement automatique sur GitHub Pages à chaque push sur la branche `main` ou `master`.
+
+### Déploiement manuel
+```bash
+# Construire et déployer sur GitHub Pages
+npm run deploy
+```
+
+### URL de l'application déployée
+L'application est accessible à l'adresse : [https://zeini-23025.github.io/BacStats](https://zeini-23025.github.io/BacStats)
+
+## Scripts Disponibles
+
+- `npm start` : Lance l'application en mode développement
+- `npm run build` : Construit l'application pour la production
+- `npm test` : Lance les tests
+- `npm run deploy` : Déploie l'application sur GitHub Pages
