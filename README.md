@@ -1,70 +1,48 @@
-# Getting Started with Create React App
+# Application d'Analyse du BAC 2024
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Ce projet est une application web basée sur React conçue pour visualiser et analyser les résultats de la session du BAC 2024. Elle offre une interface intuitive permettant aux utilisateurs d'explorer les statistiques et les résultats individuels, fournissant ainsi des aperçus sur les données de performance.
 
-In the project directory, you can run:
+## Fonctionnalités
 
-### `npm start`
+*   **Tableau de Bord Interactif :** Naviguez à travers différentes sections à l'aide d'une interface à onglets.
+*   **Mode Sombre/Clair :** Basculez entre les thèmes sombre et clair pour une meilleure expérience utilisateur et accessibilité.
+*   **Visualisation des Données :** Présente les données des résultats du BAC dans un format facilement digestible, incluant probablement des graphiques (implémenté dans `Statistics.js`).
+*   **Fonctionnalité de Recherche :** Permet aux utilisateurs de rechercher des résultats spécifiques (implémenté dans `Home.js`).
+*   **Conception Réactive :** Construit avec Material-UI pour assurer une mise en page cohérente et réactive sur divers appareils.
+*   **Indicateur de Chargement :** Fournit un retour visuel pendant le chargement des données depuis le backend.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Utilisées
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+*   **Frontend :**
+    *   React.js
+    *   Material-UI (`@mui/material`)
+    *   React Hooks
+    *   Context API
+*   **Gestion des Données :**
+    *   JSON
 
-### `npm test`
+## Préparation des Données
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Le fichier `convert_to_json.py` est un script Python utilisé pour convertir les données brutes des résultats du BAC (initialement au format CSV) en un fichier JSON (`results.json`). Ce fichier JSON est ensuite consommé par l'application React pour l'affichage et l'analyse.
 
-### `npm run build`
+## Structure du Projet
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+bac-analytics-app/
+├── public/
+│   ├── results.json        # Fichier de données JSON pour les résultats du BAC
+│   └── ...                 # Autres ressources statiques (index.html, favicon, logos)
+├── src/
+│   ├── App.js              # Composant principal de l'application, gère le routage et le thème
+│   ├── index.js            # Point d'entrée de l'application React
+│   ├── components/
+│   │   ├── Home.js         # Composant pour l'interface d'accueil/recherche
+│   │   └── Statistics.js   # Composant pour l'affichage de l'analyse statistique
+│   └── ...                 # Autres fichiers liés à React (CSS, tests, etc.)
+├── package.json            # Métadonnées et dépendances du projet
+├── package-lock.json       # Enregistre les versions exactes des dépendances
+├── README.md               # Documentation du projet (ce fichier)
+└── ...                     # Autres fichiers de configuration (.gitignore, etc.)
+```
