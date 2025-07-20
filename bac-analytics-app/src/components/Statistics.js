@@ -1,12 +1,12 @@
-
 import React, { useState, useEffect } from 'react';
-import { Typography, Box, CircularProgress, Grid, Card, CardContent } from '@mui/material';
+import { Typography, Box, CircularProgress, Grid, Card, CardContent, useTheme } from '@mui/material';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { motion } from 'framer-motion';
 
-const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042', '#8884d8', '#82ca9d'];
+const COLORS = ['#4CAF50', '#FFC107', '#F44336', '#9E9E9E', '#2196F3', '#FF5722'];
 
 function Statistics({ data }) {
+  const theme = useTheme();
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -97,15 +97,15 @@ function Statistics({ data }) {
   }
 
   return (
-    <Box>
-      <Typography variant="h4" gutterBottom align="center" style={{ marginBottom: '2rem' }}>
+    <Box sx={{ mt: 4 }}>
+      <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4, fontWeight: 'bold' }}>
         Statistiques des Résultats du BAC 2024
       </Typography>
 
       <Grid container spacing={4}>
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
-            <Card>
+            <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Répartition des décisions</Typography>
                 <ResponsiveContainer width="100%" height={300}>
@@ -116,9 +116,8 @@ function Statistics({ data }) {
                       cy="50%"
                       labelLine={false}
                       outerRadius={100}
-                      fill="#8884d8"
                       dataKey="value"
-                      label={({ name, percent }) => `${name} ${(percent * 100).toFixed(2)}%`}
+                      label={({ name, percent }) => `${name} ${percent.toFixed(2)}%`}
                     >
                       {stats.decisionData.map((entry, index) => (
                         <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
@@ -135,17 +134,17 @@ function Statistics({ data }) {
 
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
-            <Card>
+            <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Série</Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={stats.serieData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
+                    <XAxis dataKey="name" stroke={theme.palette.text.primary} />
+                    <YAxis stroke={theme.palette.text.primary} />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill="#8884d8" />
+                    <Bar dataKey="Pourcentage Admis" fill={theme.palette.primary.main} />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -155,17 +154,17 @@ function Statistics({ data }) {
 
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }}>
-            <Card>
+            <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Wilaya</Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={stats.wilayaData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="name" />
-                    <YAxis />
+                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
+                    <XAxis dataKey="name" stroke={theme.palette.text.primary} />
+                    <YAxis stroke={theme.palette.text.primary} />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill="#82ca9d" />
+                    <Bar dataKey="Pourcentage Admis" fill={theme.palette.secondary.main} />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -175,17 +174,17 @@ function Statistics({ data }) {
 
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>
-            <Card>
+            <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Noreg</Typography>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={stats.noregData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
-                    <CartesianGrid strokeDasharray="3 3" />
+                    <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis dataKey="name" />
                     <YAxis />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill="#ffc658" />
+                    <Bar dataKey="Pourcentage Admis" fill="#FFBB28" />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
