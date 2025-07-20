@@ -7,6 +7,7 @@ import {
   Card,
   CardContent,
   useTheme,
+  useMediaQuery,
 } from '@mui/material';
 import {
   PieChart,
@@ -34,6 +35,7 @@ const DECISION_COLORS = {
 
 function Statistics({ data }) {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
   const [stats, setStats] = useState(null);
 
   useEffect(() => {
@@ -135,8 +137,15 @@ function Statistics({ data }) {
   }
 
   return (
-    <Box sx={{ mt: 4 }}>
-      <Typography variant="h4" gutterBottom align="center" sx={{ mb: 4, fontWeight: 'bold' }}>
+    <Box sx={{ 
+      mt: 4,
+      px: { xs: 1, md: 0 }
+    }}>
+      <Typography variant="h4" gutterBottom align="center" sx={{ 
+        mb: 4, 
+        fontWeight: 'bold',
+        fontSize: { xs: '1.5rem', md: '2.125rem' }
+      }}>
         Statistiques des Résultats du BAC 2024
       </Typography>
 
@@ -146,19 +155,21 @@ function Statistics({ data }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
-                <Typography variant="h6" align="center" gutterBottom>
+                <Typography variant="h6" align="center" gutterBottom sx={{
+                  fontSize: { xs: '1rem', md: '1.25rem' }
+                }}>
                   Répartition des décisions
                 </Typography>
-                <ResponsiveContainer width={500} height={300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
                   <PieChart>
                     <Pie
                       data={stats.decisionData}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      outerRadius={100}
+                      outerRadius={isMobile ? 60 : 100}
                       dataKey="value"
-                      label={({ name, percent }) => `${name} ${percent.toFixed(2)}%`}
+                      label={({ name, percent }) => isMobile ? `${percent.toFixed(1)}%` : `${name} ${percent.toFixed(2)}%`}
                     >
                       {stats.decisionData.map((entry, index) => (
                         <Cell
@@ -181,14 +192,23 @@ function Statistics({ data }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
-                <Typography variant="h6" align="center" gutterBottom>
+                <Typography variant="h6" align="center" gutterBottom sx={{
+                  fontSize: { xs: '1rem', md: '1.25rem' }
+                }}>
                   Pourcentage Admis par Série
                 </Typography>
-                <ResponsiveContainer width={500} height={300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
                   <BarChart data={stats.serieData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
-                    <XAxis dataKey="name" stroke={theme.palette.text.primary} />
-                    <YAxis stroke={theme.palette.text.primary} />
+                    <XAxis 
+                      dataKey="name" 
+                      stroke={theme.palette.text.primary} 
+                      fontSize={isMobile ? 10 : 12}
+                      angle={isMobile ? -45 : 0}
+                      textAnchor={isMobile ? "end" : "middle"}
+                      height={isMobile ? 60 : 30}
+                    />
+                    <YAxis stroke={theme.palette.text.primary} fontSize={isMobile ? 10 : 12} />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
                     <Bar dataKey="Pourcentage Admis" fill={theme.palette.primary.main} />
@@ -204,14 +224,24 @@ function Statistics({ data }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
-                <Typography variant="h6" align="center" gutterBottom>
+                <Typography variant="h6" align="center" gutterBottom sx={{
+                  fontSize: { xs: '1rem', md: '1.25rem' }
+                }}>
                   Pourcentage Admis par Wilaya
                 </Typography>
-                <ResponsiveContainer width={500} height={300}>
-                  <BarChart data={stats.wilayaData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <ResponsiveContainer width={isMobile ? "100%" : 500} height={isMobile ? 350 : 300}>
+                  <BarChart data={stats.wilayaData} margin={{ top: 5, right: 30, left: 20, bottom: isMobile ? 80 : 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
-                    <XAxis dataKey="name" stroke={theme.palette.text.primary} />
-                    <YAxis stroke={theme.palette.text.primary} />
+                    <XAxis 
+                      dataKey="name" 
+                      stroke={theme.palette.text.primary} 
+                      fontSize={isMobile ? 8 : 12}
+                      angle={isMobile ? -45 : 0}
+                      textAnchor={isMobile ? "end" : "middle"}
+                      height={isMobile ? 100 : 30}
+                      interval={isMobile ? 0 : undefined}
+                    />
+                    <YAxis stroke={theme.palette.text.primary} fontSize={isMobile ? 10 : 12} />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
                     <Bar dataKey="Pourcentage Admis" fill={theme.palette.secondary.main} />
@@ -227,14 +257,22 @@ function Statistics({ data }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
-                <Typography variant="h6" align="center" gutterBottom>
+                <Typography variant="h6" align="center" gutterBottom sx={{
+                  fontSize: { xs: '1rem', md: '1.25rem' }
+                }}>
                   Pourcentage Admis par Noreg
                 </Typography>
-                <ResponsiveContainer width={500} height={300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
                   <BarChart data={stats.noregData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
-                    <XAxis dataKey="name" />
-                    <YAxis />
+                    <XAxis 
+                      dataKey="name" 
+                      fontSize={isMobile ? 10 : 12}
+                      angle={isMobile ? -45 : 0}
+                      textAnchor={isMobile ? "end" : "middle"}
+                      height={isMobile ? 60 : 30}
+                    />
+                    <YAxis fontSize={isMobile ? 10 : 12} />
                     <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
                     <Legend />
                     <Bar dataKey="Pourcentage Admis" fill="#FFBB28" />
