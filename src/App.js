@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect, createContext, useMemo } from 'react';
-import { createTheme, ThemeProvider, CssBaseline, Container, AppBar, Toolbar, Typography, Button, Box, CircularProgress } from '@mui/material';
+import { createTheme, ThemeProvider, CssBaseline, Container, AppBar, Toolbar, Typography, Button, Box, CircularProgress, Alert } from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import Tabs from '@mui/material/Tabs';
@@ -44,6 +44,7 @@ function App() {
   const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   const colorMode = useMemo(
     () => ({
@@ -72,14 +73,39 @@ function App() {
 
   useEffect(() => {
     fetch('/results.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
+        console.log('Data loaded successfully:', data.length, 'records');
         setData(data);
         setLoading(false);
+        setError(null);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
-        setLoading(false);
+        // Try alternative path for GitHub Pages
+        fetch(`${process.env.PUBLIC_URL}/results.json`)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then(data => {
+            console.log('Data loaded successfully from alternative path:', data.length, 'records');
+            setData(data);
+            setLoading(false);
+            setError(null);
+          })
+          .catch(altError => {
+            console.error('Error fetching data from alternative path:', altError);
+            setError('Impossible de charger les données. Vérifiez que le fichier results.json existe dans le dossier public.');
+            setLoading(false);
+          });
       });
   }, []);
 
@@ -91,6 +117,17 @@ function App() {
     return (
       <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
         <CircularProgress />
+        <Typography sx={{ ml: 2 }}>Chargement des données...</Typography>
+      </Box>
+    );
+  }
+
+  if (error) {
+    return (
+      <Box display="flex" justifyContent="center" alignItems="center" minHeight="100vh">
+        <Alert severity="error" sx={{ maxWidth: 600 }}>
+          {error}
+        </Alert>
       </Box>
     );
   }
