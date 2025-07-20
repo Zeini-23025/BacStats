@@ -1,4 +1,4 @@
-# Alternative moderne pour le déploiement GitHub Pages
+# Modern alternative for GitHub Pages deployment
 name: Deploy to GitHub Pages (Alternative)
 
 on:
