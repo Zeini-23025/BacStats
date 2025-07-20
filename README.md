@@ -1,59 +1,52 @@
 # Application d'Analyse du BAC 2024
 
-## Description
+Une application web React moderne pour visualiser et analyser les résultats de la session du BAC 2024 avec une interface intuitive et des fonctionnalités d'analyse avancées.
 
-Ce projet est une application web basée sur React conçue pour visualiser et analyser les résultats de la session du BAC 2024. Elle offre une interface intuitive permettant aux utilisateurs d'explorer les statistiques et les résultats individuels, fournissant ainsi des aperçus sur les données de performance.
+## 🚀 Fonctionnalités
 
-## Fonctionnalités
+- **📊 Tableau de Bord Interactif** : Navigation fluide avec interface à onglets
+- **🌙 Mode Sombre/Clair** : Basculement entre thèmes pour une meilleure expérience utilisateur
+- **📈 Visualisation des Données** : Graphiques et statistiques des résultats du BAC
+- **🔍 Recherche Avancée** : Recherche rapide de résultats spécifiques
+- **📱 Design Réactif** : Interface optimisée pour tous les appareils
+- **⚡ Indicateurs de Chargement** : Retour visuel pendant le traitement des données
 
-*   **Tableau de Bord Interactif :** Naviguez à travers différentes sections à l'aide d'une interface à onglets.
-*   **Mode Sombre/Clair :** Basculez entre les thèmes sombre et clair pour une meilleure expérience utilisateur et accessibilité.
-*   **Visualisation des Données :** Présente les données des résultats du BAC dans un format facilement digestible, incluant probablement des graphiques (implémenté dans `Statistics.js`).
-*   **Fonctionnalité de Recherche :** Permet aux utilisateurs de rechercher des résultats spécifiques (implémenté dans `Home.js`).
-*   **Conception Réactive :** Construit avec Material-UI pour assurer une mise en page cohérente et réactive sur divers appareils.
-*   **Indicateur de Chargement :** Fournit un retour visuel pendant le chargement des données depuis le backend.
+## 🛠️ Technologies Utilisées
 
-## Technologies Utilisées
+### Frontend
+- **React.js** - Framework JavaScript moderne
+- **Material-UI** (@mui/material) - Composants UI élégants
+- **React Hooks** - Gestion d'état moderne
+- **Context API** - Gestion d'état globale
 
-*   **Frontend :**
-    *   React.js
-    *   Material-UI (`@mui/material`)
-    *   React Hooks
-    *   Context API
-*   **Gestion des Données :**
-    *   JSON
+### Données
+- **JSON** - Format de données structuré
+- **Python** - Script de conversion des données
 
-## Préparation des Données
-
-Le fichier `convert_to_json.py` est un script Python utilisé pour convertir les données brutes des résultats du BAC (initialement au format CSV) en un fichier JSON (`results.json`). Ce fichier JSON est ensuite consommé par l'application React pour l'affichage et l'analyse.
-
-## Structure du Projet
+## 📁 Structure du Projet
 
 ```
 bac-analytics-app/
 ├── public/
-│   ├── results.json        # Fichier de données JSON pour les résultats du BAC
-│   └── ...                 # Autres ressources statiques (index.html, favicon, logos)
+│   ├── results.json          # Données JSON des résultats du BAC
+│   └── ...                   # Ressources statiques
 ├── src/
-│   ├── App.js              # Composant principal de l'application, gère le routage et le thème
-│   ├── index.js            # Point d'entrée de l'application React
-│   ├── components/
-│   │   ├── Home.js         # Composant pour l'interface d'accueil/recherche
-│   │   └── Statistics.js   # Composant pour l'affichage de l'analyse statistique
-│   └── ...                 # Autres fichiers liés à React (CSS, tests, etc.)
-├── .github/
-│   └── workflows/
-│       └── deploy.yml      # Configuration CI/CD pour GitHub Pages
-├── package.json            # Métadonnées et dépendances du projet
-├── package-lock.json       # Enregistre les versions exactes des dépendances
-├── README.md               # Documentation du projet (ce fichier)
-└── ...                     # Autres fichiers de configuration (.gitignore, etc.)
+│   ├── App.js               # Composant principal
+│   ├── index.js             # Point d'entrée
+│   └── components/
+│       ├── Home.js          # Interface d'accueil/recherche
+│       └── Statistics.js    # Analyses statistiques
+├── .github/workflows/
+│   └── deploy.yml           # CI/CD GitHub Pages
+├── convert_to_json.py       # Script de conversion des données
+├── screenshots/             # Captures d'écran
+└── package.json            # Configuration du projet
 ```
 
-## Installation et Développement
+## 🚀 Installation et Développement
 
 ### Prérequis
-- Node.js (version 16 ou supérieure)
+- Node.js (version 16+)
 - npm ou yarn
 
 ### Installation
@@ -65,43 +58,53 @@ cd BacStats/bac-analytics-app
 # Installer les dépendances
 npm install
 
-# Lancer l'application en mode développement
+# Lancer en mode développement
 npm start
 ```
 
-L'application sera accessible à l'adresse `http://localhost:3000`.
+L'application sera accessible sur `http://localhost:3000`
 
-## Déploiement
+## 📦 Scripts Disponibles
 
-### Déploiement automatique avec GitHub Actions
-L'application est configurée pour un déploiement automatique sur GitHub Pages à chaque push sur la branche `main` ou `master`.
-
-### Déploiement manuel
 ```bash
-# Construire et déployer sur GitHub Pages
-npm run deploy
+npm start      # Mode développement
+npm run build  # Build de production
+npm test       # Lancer les tests
+npm run deploy # Déployer sur GitHub Pages
 ```
 
-### URL de l'application déployée
-L'application est accessible à l'adresse : [https://zeini-23025.github.io/BacStats](https://zeini-23025.github.io/BacStats)
+## 🌐 Déploiement
 
-## Scripts Disponibles
+### Déploiement Automatique
+L'application se déploie automatiquement sur GitHub Pages à chaque push sur `main`.
 
-- `npm start` : Lance l'application en mode développement
-- `npm run build` : Construit l'application pour la production
-- `npm test` : Lance les tests
-- `npm run deploy` : Déploie l'application sur GitHub Pages
+### URL de Production
+🔗 **[https://zeini-23025.github.io/BacStats](https://zeini-23025.github.io/BacStats)**
 
-## Screenshots
+## 📊 Préparation des Données
 
-![Screenshot 1](screenshots/Screenshot_20250720_213417.png)
+Le script `convert_to_json.py` convertit les données CSV brutes du BAC en format JSON optimisé pour l'application React.
 
-![Screenshot 2](screenshots/Screenshot_20250720_213444.png)
+## 📸 Screenshots
 
-![Screenshot 3](screenshots/Screenshot_20250720_213403.png)
+### 🖥️ **Home page**
+![Desktop View](screenshots/Screenshot_20250720_213417.png)
+*Interface desktop avec graphiques complets*
+
+### 📱 **Darck mode**
+![Mobile View](screenshots/Screenshot_20250720_213444.png)
+*Interface mobile optimisée avec cartes*
+
+### 📊 **Statistiques page**
+![Statistics](screenshots/Screenshot_20250720_213403.png)
+*Analyse détaillée par série et région*
+
+## 👨‍💻 Auteur
+
+**Zeini Cheikh**  
+[![GitHub](https://img.shields.io/badge/GitHub-Zeini--23025-black?style=flat&logo=github)](https://github.com/Zeini-23025)
 
 
-## Author
+---
 
-- [<img src="https://github.com/Zeini-23025.png" width="32" height="32" style="border-radius:50%"/>](https://github.com/Zeini-23025)  
-  **Zeini Cheikh** – [@Zeini-23025](https://github.com/Zeini-23025)
+⭐ **N'hésitez pas à donner une étoile si ce projet vous a aidé !**
