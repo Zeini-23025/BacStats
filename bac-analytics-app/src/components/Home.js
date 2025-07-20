@@ -66,7 +66,7 @@ function Home({ data }) {
           </Button>
         </Grid>
         <Grid item xs={12} md={3}>
-          <FormControl fullWidth variant="outlined" sx={{ bgcolor: 'background.paper' }}>
+          <FormControl fullWidth variant="outlined" sx={{ bgcolor: 'background.paper' , minHeight: 56 }}>
             <InputLabel>Série</InputLabel>
             <Select value={selectedSerie} label="Série" onChange={(e) => setSelectedSerie(e.target.value)}>
               <MenuItem value=""><em>Toutes</em></MenuItem>
@@ -77,7 +77,7 @@ function Home({ data }) {
           </FormControl>
         </Grid>
         <Grid item xs={12} md={3}>
-          <FormControl fullWidth variant="outlined" sx={{ bgcolor: 'background.paper' }}>
+          <FormControl fullWidth variant="outlined" sx={{ bgcolor: 'background.paper'  , minHeight: 56 }}>
             <InputLabel>Wilaya</InputLabel>
             <Select value={selectedWilaya} label="Wilaya" onChange={(e) => setSelectedWilaya(e.target.value)}>
               <MenuItem value=""><em>Toutes</em></MenuItem>

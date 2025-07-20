@@ -108,7 +108,7 @@ function Statistics({ data }) {
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Répartition des décisions</Typography>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width={500} height={300}>
                   <PieChart>
                     <Pie
                       data={stats.decisionData}
@@ -137,7 +137,7 @@ function Statistics({ data }) {
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Série</Typography>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width={500} height={300}>
                   <BarChart data={stats.serieData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis dataKey="name" stroke={theme.palette.text.primary} />
@@ -157,7 +157,7 @@ function Statistics({ data }) {
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Wilaya</Typography>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width={500} height={300}>
                   <BarChart data={stats.wilayaData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis dataKey="name" stroke={theme.palette.text.primary} />
@@ -177,7 +177,7 @@ function Statistics({ data }) {
             <Card sx={{ boxShadow: 3, height: '100%' }}>
               <CardContent>
                 <Typography variant="h6" align="center" gutterBottom>Pourcentage Admis par Noreg</Typography>
-                <ResponsiveContainer width="100%" height={300}>
+                <ResponsiveContainer width={500} height={300}>
                   <BarChart data={stats.noregData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis dataKey="name" />
