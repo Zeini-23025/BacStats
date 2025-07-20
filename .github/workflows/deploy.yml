@@ -1,14 +1,9 @@
-# Workflow pour déployer automatiquement l'application React sur GitHub Pages
 name: Deploy to GitHub Pages
 
-# Déclenche le workflow sur les événements suivants
 on:
   push:
-    branches: [ main, master ]  # Déploie automatiquement lors d'un push sur main ou master
-  pull_request:
-    branches: [ main, master ]  # Teste le build lors d'une pull request
+    branches: [ main ]
 
-# Permissions nécessaires pour écrire sur gh-pages
 permissions:
   contents: read
   pages: write
@@ -16,36 +11,27 @@ permissions:
 
 jobs:
   build-and-deploy:
-    runs-on: ubuntu-latest  # Utilise la dernière version d'Ubuntu
+    runs-on: ubuntu-latest
     
     steps:
-    # Étape 1: Récupérer le code source du repository
     - name: Checkout
       uses: actions/checkout@v4
       
-    # Étape 2: Configurer Node.js version 18 avec cache npm pour optimiser les builds
     - name: Setup Node.js
       uses: actions/setup-node@v4
       with:
         node-version: '18'
-        cache: 'npm'  # Met en cache les dépendances npm pour accélérer les builds
+        cache: 'npm'
         
-    # Étape 3: Installer les dépendances du projet (npm ci est plus rapide que npm install)
     - name: Install dependencies
       run: npm ci
       
-    # Étape 4: Construire l'application React pour la production
     - name: Build
       run: npm run build
       
-    # Étape 5: Déployer sur GitHub Pages uniquement si c'est un push sur main/master
     - name: Deploy to GitHub Pages
-      uses: peaceiris/actions-gh-pages@v4
-      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: peaceiris/actions-gh-pages@v3
+      if: github.ref == 'refs/heads/main'
       with:
-        # Utilise le token personnalisé configuré dans les secrets du repository
         github_token: ${{ secrets.TOKEN }}
-        # Dossier contenant les fichiers buildés à déployer
         publish_dir: ./build
-        # Optionnel: message de commit personnalisé
-        commit_message: "🚀 Deploy to GitHub Pages"
