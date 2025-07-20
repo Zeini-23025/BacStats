@@ -85,23 +85,20 @@ L'application se déploie automatiquement sur GitHub Pages à chaque push sur `m
 
 Le script `convert_to_json.py` convertit les données CSV brutes du BAC en format JSON optimisé pour l'application React.
 
-## 📸 Screenshots
+## 📱 Aperçu de l'Application
 
-### 🖥️ **Home page**
-![Desktop View](screenshots/Screenshot_20250720_213417.png)
-*Interface desktop avec graphiques complets*
+### Interface Principale
+![Screenshot Principal](screenshots/Screenshot_20250720_213417.png)
 
-### 📱 **Darck mode**
-![Mobile View](screenshots/Screenshot_20250720_213444.png)
-*Interface mobile optimisée avec cartes*
+### Recherche et Filtres
+![Screenshot Recherche](screenshots/Screenshot_20250720_213444.png)
 
-### 📊 **Statistiques page**
-![Statistics](screenshots/Screenshot_20250720_213403.png)
-*Analyse détaillée par série et région*
+### Analyses Statistiques
+![Screenshot Statistiques](screenshots/Screenshot_20250720_213403.png)
 
 ## 👨‍💻 Auteur
 
-**Zeini Cheikh**  
+**Zeini Cheikh** 
 [![GitHub](https://img.shields.io/badge/GitHub-Zeini--23025-black?style=flat&logo=github)](https://github.com/Zeini-23025)
 
 
