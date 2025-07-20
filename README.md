@@ -91,3 +91,17 @@ L'application est accessible à l'adresse : [https://zeini-23025.github.io/BacSt
 - `npm run build` : Construit l'application pour la production
 - `npm test` : Lance les tests
 - `npm run deploy` : Déploie l'application sur GitHub Pages
+
+## Screenshots
+
+![Screenshot 1](screenshots/Screenshot_20250720_213417.png)
+
+![Screenshot 2](screenshots/Screenshot_20250720_213444.png)
+
+![Screenshot 3](screenshots/Screenshot_20250720_213403.png)
+
+
+## Author
+
+- [<img src="https://github.com/Zeini-23025.png" width="32" height="32" style="border-radius:50%"/>](https://github.com/Zeini-23025)  
+  **Zeini Cheikh** – [@Zeini-23025](https://github.com/Zeini-23025)
