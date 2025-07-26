@@ -8,6 +8,8 @@ import {
   CardContent,
   useTheme,
   useMediaQuery,
+  Paper,
+  Chip,
 } from '@mui/material';
 import {
   PieChart,
@@ -63,6 +65,7 @@ function Statistics({ data }) {
       const decisionData = Object.keys(decisionCounts).map((key) => ({
         name: key,
         value: (decisionCounts[key] / totalStudents) * 100,
+        count: decisionCounts[key],
       }));
 
       // Stats par Série
@@ -120,6 +123,8 @@ function Statistics({ data }) {
       }));
 
       setStats({
+        totalStudents,
+        decisionCounts,
         decisionData,
         serieData,
         wilayaData,
@@ -139,7 +144,7 @@ function Statistics({ data }) {
   return (
     <Box sx={{ 
       mt: 4,
-      px: { xs: 1, md: 0 }
+      px: { xs: 2, md: 0 }
     }}>
       <Typography variant="h4" gutterBottom align="center" sx={{ 
         mb: 4, 
@@ -149,27 +154,222 @@ function Statistics({ data }) {
         Statistiques des Résultats du BAC 2024
       </Typography>
 
-      <Grid container spacing={4}>
+      {/* Section des statistiques numériques */}
+      <Card sx={{ mb: 4, boxShadow: 3 }}>
+        <CardContent>
+          <Typography variant="h6" align="center" gutterBottom sx={{
+            fontSize: { xs: '1.1rem', md: '1.25rem' },
+            mb: 3
+          }}>
+            Résumé des Résultats
+          </Typography>
+          <Grid container spacing={2} style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+            flexWrap: 'wrap',
+            gap: 2,
+          }}>
+            <Grid item xs={6} sm={3}>
+              <Paper sx={{ 
+                p: { xs: 1.5, md: 2 }, 
+                textAlign: 'center',
+                backgroundColor: '#f5f5f5',
+                border: '2px solid #2196F3',
+                minWidth: '150px',
+                margin: '2px'
+              }}>
+                <Typography variant="h4" sx={{ 
+                  fontWeight: 'bold', 
+                  color: '#2196F3',
+                  fontSize: { xs: '1.5rem', md: '2rem' }
+                }}>
+                  {stats.totalStudents.toLocaleString()}
+                </Typography>
+                <Typography variant="body2" sx={{ 
+                  fontSize: { xs: '0.75rem', md: '0.875rem' }
+                }}>
+                  Total Étudiants
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Paper sx={{ 
+                p: { xs: 1.5, md: 2 }, 
+                textAlign: 'center',
+                backgroundColor: '#e8f5e8',
+                border: '2px solid #4CAF50',
+                minWidth: '150px',
+                margin: '2px'
+              }}>
+                <Typography variant="h4" sx={{ 
+                  fontWeight: 'bold', 
+                  color: '#4CAF50',
+                  fontSize: { xs: '1.5rem', md: '2rem' }
+                }}>
+                  {(stats.decisionCounts.Admis || 0).toLocaleString()}
+                </Typography>
+                <Typography variant="body2" sx={{ 
+                  fontSize: { xs: '0.75rem', md: '0.875rem' }
+                }}>
+                  Admis
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Paper sx={{ 
+                p: { xs: 1.5, md: 2 }, 
+                textAlign: 'center',
+                backgroundColor: '#fff8e1',
+                border: '2px solid #FFC107',
+                minWidth: '150px',
+                margin: '2px'
+              }}>
+                <Typography variant="h4" sx={{ 
+                  fontWeight: 'bold', 
+                  color: '#FFC107',
+                  fontSize: { xs: '1.5rem', md: '2rem' }
+                }}>
+                  {(stats.decisionCounts.Sessionnaire || 0).toLocaleString()}
+                </Typography>
+                <Typography variant="body2" sx={{ 
+                  fontSize: { xs: '0.75rem', md: '0.875rem' }
+                }}>
+                  Sessionnaires
+                </Typography>
+              </Paper>
+            </Grid>
+            <Grid item xs={6} sm={3}>
+              <Paper sx={{ 
+                p: { xs: 1.5, md: 2 }, 
+                textAlign: 'center',
+                backgroundColor: '#ffebee',
+                border: '2px solid #F44336',
+                minWidth: '150px',
+                margin: '2px'
+              }}>
+                <Typography variant="h4" sx={{ 
+                  fontWeight: 'bold', 
+                  color: '#F44336',
+                  fontSize: { xs: '1.5rem', md: '2rem' }
+                }}>
+                  {(stats.decisionCounts.Ajourné || 0).toLocaleString()}
+                </Typography>
+                <Typography variant="body2" sx={{ 
+                  fontSize: { xs: '0.75rem', md: '0.875rem' }
+                }}>
+                  Ajournés
+                </Typography>
+              </Paper>
+            </Grid>
+            {(stats.decisionCounts.Absent && stats.decisionCounts.Absent > 0) && (
+              <Grid item xs={6} sm={3}>
+                <Paper sx={{ 
+                  p: { xs: 1.5, md: 2 }, 
+                  textAlign: 'center',
+                  backgroundColor: '#f5f5f5',
+                  border: '2px solid #9E9E9E',
+                  minWidth: '150px',
+                  margin: '2px'
+                }}>
+                  <Typography variant="h4" sx={{ 
+                    fontWeight: 'bold', 
+                    color: '#9E9E9E',
+                    fontSize: { xs: '1.5rem', md: '2rem' }
+                  }}>
+                    {stats.decisionCounts.Absent.toLocaleString()}
+                  </Typography>
+                  <Typography variant="body2" sx={{ 
+                    fontSize: { xs: '0.75rem', md: '0.875rem' }
+                  }}>
+                    Absents
+                  </Typography>
+                </Paper>
+              </Grid>
+            )}
+            {(stats.decisionCounts.Autre && stats.decisionCounts.Autre > 0) && (
+              <Grid item xs={6} sm={3}>
+                <Paper sx={{ 
+                  p: { xs: 1.5, md: 2 }, 
+                  textAlign: 'center',
+                  backgroundColor: '#e3f2fd',
+                  border: '2px solid #2196F3'
+                }}>
+                  <Typography variant="h4" sx={{ 
+                    fontWeight: 'bold', 
+                    color: '#2196F3',
+                    fontSize: { xs: '1.5rem', md: '2rem' }
+                  }}>
+                    {stats.decisionCounts.Autre.toLocaleString()}
+                  </Typography>
+                  <Typography variant="body2" sx={{ 
+                    fontSize: { xs: '0.75rem', md: '0.875rem' }
+                  }}>
+                    Autre
+                  </Typography>
+                </Paper>
+              </Grid>
+            )}
+          </Grid>
+          
+          {/* Pourcentages */}
+          <Box sx={{ mt: 3, display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
+            <Chip 
+              label={`Taux de réussite: ${((stats.decisionCounts.Admis || 0) / stats.totalStudents * 100).toFixed(1)}%`}
+              color="success"
+              sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}
+            />
+            <Chip 
+              label={`Taux de rattrapage: ${((stats.decisionCounts.Sessionnaire || 0) / stats.totalStudents * 100).toFixed(1)}%`}
+              color="warning"
+              sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}
+            />
+            <Chip 
+              label={`Taux d'échec: ${((stats.decisionCounts.Ajourné || 0) / stats.totalStudents * 100).toFixed(1)}%`}
+              color="error"
+              sx={{ fontSize: { xs: '0.75rem', md: '0.875rem' } }}
+            />
+            {(stats.decisionCounts.Absent && stats.decisionCounts.Absent > 0) && (
+              <Chip 
+                label={`Taux d'absence: ${((stats.decisionCounts.Absent || 0) / stats.totalStudents * 100).toFixed(1)}%`}
+                sx={{ 
+                  fontSize: { xs: '0.75rem', md: '0.875rem' },
+                  backgroundColor: '#9E9E9E',
+                  color: 'white'
+                }}
+              />
+            )}
+          </Box>
+        </CardContent>
+      </Card>
+
+      <Grid container spacing={4} style={{
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+      }}>
         {/* PieChart - Décisions */}
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
-              <CardContent>
+              <CardContent sx={{ p: { xs: 2, md: 3 } }}>
                 <Typography variant="h6" align="center" gutterBottom sx={{
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}>
                   Répartition des décisions
                 </Typography>
-                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
+                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
                   <PieChart>
                     <Pie
                       data={stats.decisionData}
                       cx="50%"
                       cy="50%"
                       labelLine={false}
-                      outerRadius={isMobile ? 60 : 100}
+                      outerRadius={isMobile ? 50 : 80}
                       dataKey="value"
-                      label={({ name, percent }) => isMobile ? `${percent.toFixed(1)}%` : `${name} ${percent.toFixed(2)}%`}
+                      label={({ name, percent, count }) => 
+                        isMobile ? `${percent.toFixed(0)}%` : `${name}: ${count} (${percent.toFixed(1)}%)`
+                      }
                     >
                       {stats.decisionData.map((entry, index) => (
                         <Cell
@@ -178,10 +378,29 @@ function Statistics({ data }) {
                         />
                       ))}
                     </Pie>
-                    <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
-                    <Legend />
+                    <Tooltip formatter={(value, name, props) => [
+                      `${value.toFixed(1)}% (${props.payload.count} étudiants)`, 
+                      name
+                    ]} />
+                    {!isMobile && <Legend />}
                   </PieChart>
                 </ResponsiveContainer>
+                {isMobile && (
+                  <Box sx={{ mt: 2, display: 'flex', flexWrap: 'wrap', gap: 0.5, justifyContent: 'center' }}>
+                    {stats.decisionData.map((entry, index) => (
+                      <Chip
+                        key={`legend-${index}`}
+                        label={`${entry.name}: ${entry.count}`}
+                        size="small"
+                        sx={{
+                          backgroundColor: DECISION_COLORS[entry.name] || '#CCCCCC',
+                          color: 'white',
+                          fontSize: '0.7rem'
+                        }}
+                      />
+                    ))}
+                  </Box>
+                )}
               </CardContent>
             </Card>
           </motion.div>
@@ -191,27 +410,41 @@ function Statistics({ data }) {
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.2 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
-              <CardContent>
+              <CardContent sx={{ p: { xs: 2, md: 3 } }}>
                 <Typography variant="h6" align="center" gutterBottom sx={{
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}>
                   Pourcentage Admis par Série
                 </Typography>
-                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
-                  <BarChart data={stats.serieData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                  <BarChart data={stats.serieData} margin={{ 
+                    top: 5, 
+                    right: isMobile ? 10 : 30, 
+                    left: isMobile ? 10 : 20, 
+                    bottom: isMobile ? 40 : 5 
+                  }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis 
                       dataKey="name" 
                       stroke={theme.palette.text.primary} 
-                      fontSize={isMobile ? 10 : 12}
+                      fontSize={isMobile ? 8 : 12}
                       angle={isMobile ? -45 : 0}
                       textAnchor={isMobile ? "end" : "middle"}
-                      height={isMobile ? 60 : 30}
+                      height={isMobile ? 40 : 30}
+                      interval={0}
                     />
-                    <YAxis stroke={theme.palette.text.primary} fontSize={isMobile ? 10 : 12} />
-                    <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
-                    <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill={theme.palette.primary.main} />
+                    <YAxis 
+                      stroke={theme.palette.text.primary} 
+                      fontSize={isMobile ? 8 : 12}
+                      width={isMobile ? 30 : 40}
+                    />
+                    <Tooltip formatter={(value) => `${value.toFixed(1)}%`} />
+                    {!isMobile && <Legend />}
+                    <Bar 
+                      dataKey="Pourcentage Admis" 
+                      fill={theme.palette.primary.main}
+                      radius={[2, 2, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -223,28 +456,41 @@ function Statistics({ data }) {
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.4 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
-              <CardContent>
+              <CardContent sx={{ p: { xs: 2, md: 3 } }}>
                 <Typography variant="h6" align="center" gutterBottom sx={{
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}>
                   Pourcentage Admis par Wilaya
                 </Typography>
-                <ResponsiveContainer width={isMobile ? "100%" : 500} height={isMobile ? 350 : 300}>
-                  <BarChart data={stats.wilayaData} margin={{ top: 5, right: 30, left: 20, bottom: isMobile ? 80 : 5 }}>
+                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                  <BarChart data={stats.wilayaData} margin={{ 
+                    top: 5, 
+                    right: isMobile ? 5 : 30, 
+                    left: isMobile ? 5 : 20, 
+                    bottom: isMobile ? 80 : 40 
+                  }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis 
                       dataKey="name" 
                       stroke={theme.palette.text.primary} 
-                      fontSize={isMobile ? 8 : 12}
-                      angle={isMobile ? -45 : 0}
-                      textAnchor={isMobile ? "end" : "middle"}
-                      height={isMobile ? 100 : 30}
-                      interval={isMobile ? 0 : undefined}
+                      fontSize={isMobile ? 6 : 10}
+                      angle={-45}
+                      textAnchor="end"
+                      height={isMobile ? 80 : 60}
+                      interval={0}
                     />
-                    <YAxis stroke={theme.palette.text.primary} fontSize={isMobile ? 10 : 12} />
-                    <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
-                    <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill={theme.palette.secondary.main} />
+                    <YAxis 
+                      stroke={theme.palette.text.primary} 
+                      fontSize={isMobile ? 8 : 12}
+                      width={isMobile ? 25 : 40}
+                    />
+                    <Tooltip formatter={(value) => `${value.toFixed(1)}%`} />
+                    {!isMobile && <Legend />}
+                    <Bar 
+                      dataKey="Pourcentage Admis" 
+                      fill={theme.palette.secondary.main}
+                      radius={[2, 2, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
@@ -256,26 +502,38 @@ function Statistics({ data }) {
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5, delay: 0.6 }}>
             <Card sx={{ boxShadow: 3, height: '100%' }}>
-              <CardContent>
+              <CardContent sx={{ p: { xs: 2, md: 3 } }}>
                 <Typography variant="h6" align="center" gutterBottom sx={{
                   fontSize: { xs: '1rem', md: '1.25rem' }
                 }}>
                   Pourcentage Admis par Noreg
                 </Typography>
-                <ResponsiveContainer width={isMobile ? "100%" : 500} height={300}>
-                  <BarChart data={stats.noregData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                  <BarChart data={stats.noregData} margin={{ 
+                    top: 5, 
+                    right: isMobile ? 10 : 30, 
+                    left: isMobile ? 10 : 20, 
+                    bottom: isMobile ? 40 : 5 
+                  }}>
                     <CartesianGrid strokeDasharray="3 3" stroke={theme.palette.mode === 'dark' ? '#424242' : '#e0e0e0'} />
                     <XAxis 
                       dataKey="name" 
-                      fontSize={isMobile ? 10 : 12}
+                      fontSize={isMobile ? 8 : 12}
                       angle={isMobile ? -45 : 0}
                       textAnchor={isMobile ? "end" : "middle"}
-                      height={isMobile ? 60 : 30}
+                      height={isMobile ? 40 : 30}
                     />
-                    <YAxis fontSize={isMobile ? 10 : 12} />
-                    <Tooltip formatter={(value) => `${value.toFixed(2)}%`} />
-                    <Legend />
-                    <Bar dataKey="Pourcentage Admis" fill="#FFBB28" />
+                    <YAxis 
+                      fontSize={isMobile ? 8 : 12}
+                      width={isMobile ? 30 : 40}
+                    />
+                    <Tooltip formatter={(value) => `${value.toFixed(1)}%`} />
+                    {!isMobile && <Legend />}
+                    <Bar 
+                      dataKey="Pourcentage Admis"
+                      fill="#FFBB28"
+                      radius={[2, 2, 0, 0]}
+                    />
                   </BarChart>
                 </ResponsiveContainer>
               </CardContent>
