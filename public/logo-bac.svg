@@ -1,0 +1,15 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Cercle principal -->
+  <circle cx="20" cy="20" r="18" fill="#2196F3" stroke="#ffffff" stroke-width="2"/>
+  
+  <!-- Livre ouvert -->
+  <path d="M12 15 L20 13 L28 15 L28 25 L20 23 L12 25 Z" fill="#ffffff" stroke="#2196F3" stroke-width="0.5"/>
+  <line x1="20" y1="13" x2="20" y2="23" stroke="#2196F3" stroke-width="1"/>
+  
+  <!-- Graduation cap -->
+  <path d="M8 12 L20 8 L32 12 L20 16 Z" fill="#FFD700"/>
+  <path d="M32 12 L32 16 Q32 18 30 18 Q28 18 28 16 L28 12" fill="#FFD700"/>
+  
+  <!-- Lettres BAC -->
+  <text x="20" y="32" font-family="Arial, sans-serif" font-size="6" font-weight="bold" text-anchor="middle" fill="#ffffff">BAC</text>
+</svg>

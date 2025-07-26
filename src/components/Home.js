@@ -93,7 +93,7 @@ function Home({ data }) {
               value={selectedSerie}
               label="Série"
               onChange={(e) => setSelectedSerie(e.target.value)}
-              style={{ minWidth: 80 }}
+              style={{ minWidth: 100 }}
             >
               <MenuItem value="">
                 <em>Toutes</em>
@@ -113,7 +113,7 @@ function Home({ data }) {
               value={selectedWilaya}
               label="Wilaya"
               onChange={(e) => setSelectedWilaya(e.target.value)}
-              style={{ minWidth: 80 }}
+              style={{ minWidth: 100 }}
             >
               <MenuItem value="">
                 <em>Toutes</em>
@@ -193,8 +193,11 @@ function Home({ data }) {
                     <Typography variant="h6" sx={{ mb: 1 }}>
                       {item.Nom_FR}
                     </Typography>
+                    <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 1 }}>
+                      BAC Nombre: {item.Num_Bac}
+                    </Typography>
                     <Typography color="text.secondary" sx={{ mb: 1 }}>
-                      {item.Serie_FR}
+                      Serie : {item.Serie_FR}
                     </Typography>
                     <Typography variant="body2" sx={{ mb: 0.5 }}>
                       <strong>Moyenne:</strong> {item.Moy_Bac}

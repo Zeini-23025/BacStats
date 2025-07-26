@@ -7,6 +7,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Home from './components/Home';
 import Statistics from './components/Statistics';
+import BacLogo from './components/BacLogo';
 
 export const ColorModeContext = createContext({
   toggleColorMode: () => {},
@@ -138,9 +139,12 @@ function App() {
         <CssBaseline />
         <AppBar position="static">
           <Toolbar>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-              BAC 2024 Analytics
-            </Typography>
+            <Box sx={{ display: 'flex', alignItems: 'center', flexGrow: 1 }}>
+              <BacLogo size={36} color={theme.palette.mode} />
+              <Typography variant="h6" component="div" sx={{ ml: 2 }}>
+                BAC 2024 Analytics
+              </Typography>
+            </Box>
             <Button sx={{ ml: 1 }} onClick={colorMode.toggleColorMode} color="inherit">
               {theme.palette.mode === 'dark' ? <Brightness7Icon /> : <Brightness4Icon />}
             </Button>
