@@ -53,7 +53,7 @@ bac-analytics-app/
 ```bash
 # Cloner le repository
 git clone https://github.com/Zeini-23025/BacStats.git
-cd BacStats/bac-analytics-app
+cd BacStats
 
 # Installer les dépendances
 npm install
@@ -88,14 +88,17 @@ Le script `convert_to_json.py` convertit les données CSV brutes du BAC en forma
 ## 📱 Aperçu de l'Application
 
 ### Interface Principale
-![Screenshot Principal](screenshots/Screenshot_20250720_213417.png)
+![Screenshot Principal](screenshots/Screenshot_20250726_174358.png)
 
 ### Recherche et Filtres
-![Screenshot Recherche](screenshots/Screenshot_20250720_213444.png)
+![Screenshot Recherche](screenshots/Screenshot_20250726_174411.png)
+![Screenshot Recherche](screenshots/Screenshot_20250726_174446.png)
+
 
 ### Analyses Statistiques
-![Screenshot Statistiques](screenshots/Screenshot_20250720_213403.png)
-
+![Screenshot Statistiques](screenshots/Screenshot_20250726_174500.png)
+![Screenshot Statistiques](screenshots/Screenshot_20250726_174508.png)
+![Screenshot Statistiques](screenshots/Screenshot_20250726_174517.png)
 ## 👨‍💻 Auteur
 
 **Zeini Cheikh** 
