@@ -163,12 +163,11 @@ function Statistics({ data }) {
           }}>
             Résumé des Résultats
           </Typography>
-          <Grid container spacing={2} style={{
+          <Grid container spacing={2} sx={{
             display: 'flex',
             justifyContent: 'center',
             alignItems: 'center',
             flexWrap: 'wrap',
-            gap: 2,
           }}>
             <Grid item xs={6} sm={3}>
               <Paper sx={{ 
@@ -176,8 +175,7 @@ function Statistics({ data }) {
                 textAlign: 'center',
                 backgroundColor: '#f5f5f5',
                 border: '2px solid #2196F3',
-                minWidth: '150px',
-                margin: '2px'
+                minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
@@ -199,8 +197,7 @@ function Statistics({ data }) {
                 textAlign: 'center',
                 backgroundColor: '#e8f5e8',
                 border: '2px solid #4CAF50',
-                minWidth: '150px',
-                margin: '2px'
+                minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
@@ -222,8 +219,7 @@ function Statistics({ data }) {
                 textAlign: 'center',
                 backgroundColor: '#fff8e1',
                 border: '2px solid #FFC107',
-                minWidth: '150px',
-                margin: '2px'
+                minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
@@ -245,8 +241,7 @@ function Statistics({ data }) {
                 textAlign: 'center',
                 backgroundColor: '#ffebee',
                 border: '2px solid #F44336',
-                minWidth: '150px',
-                margin: '2px'
+                minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
@@ -269,8 +264,7 @@ function Statistics({ data }) {
                   textAlign: 'center',
                   backgroundColor: '#f5f5f5',
                   border: '2px solid #9E9E9E',
-                  minWidth: '150px',
-                  margin: '2px'
+                  minWidth: '120px',
                 }}>
                   <Typography variant="h4" sx={{ 
                     fontWeight: 'bold', 
@@ -343,11 +337,7 @@ function Statistics({ data }) {
         </CardContent>
       </Card>
 
-      <Grid container spacing={4} style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-      }}>
+      <Grid container spacing={4}>
         {/* PieChart - Décisions */}
         <Grid item xs={12} md={6}>
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.5 }}>
@@ -358,7 +348,7 @@ function Statistics({ data }) {
                 }}>
                   Répartition des décisions
                 </Typography>
-                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 450} height={isMobile ? 250 : 300}>
                   <PieChart>
                     <Pie
                       data={stats.decisionData}
@@ -416,7 +406,7 @@ function Statistics({ data }) {
                 }}>
                   Pourcentage Admis par Série
                 </Typography>
-                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 450} height={300}>
                   <BarChart data={stats.serieData} margin={{ 
                     top: 5, 
                     right: isMobile ? 10 : 30, 
@@ -462,7 +452,7 @@ function Statistics({ data }) {
                 }}>
                   Pourcentage Admis par Wilaya
                 </Typography>
-                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 450} height={300}>
                   <BarChart data={stats.wilayaData} margin={{ 
                     top: 5, 
                     right: isMobile ? 5 : 30, 
@@ -508,7 +498,7 @@ function Statistics({ data }) {
                 }}>
                   Pourcentage Admis par Noreg
                 </Typography>
-                <ResponsiveContainer width={isMobile ? '100%' : '450px'} height={isMobile ? 250 : 300}>
+                <ResponsiveContainer width={isMobile ? "100%" : 450} height={300}>
                   <BarChart data={stats.noregData} margin={{ 
                     top: 5, 
                     right: isMobile ? 10 : 30, 
