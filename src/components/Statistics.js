@@ -173,13 +173,13 @@ function Statistics({ data }) {
               <Paper sx={{ 
                 p: { xs: 1.5, md: 2 }, 
                 textAlign: 'center',
-                backgroundColor: '#f5f5f5',
+                backgroundColor: theme.palette.mode === 'dark' ? '#424242' : '#f5f5f5',
                 border: '2px solid #2196F3',
                 minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
-                  color: '#2196F3',
+                  color: theme.palette.mode === 'dark' ? '#90CAF9' : '#2196F3',
                   fontSize: { xs: '1.5rem', md: '2rem' }
                 }}>
                   {stats.totalStudents.toLocaleString()}
@@ -195,13 +195,13 @@ function Statistics({ data }) {
               <Paper sx={{ 
                 p: { xs: 1.5, md: 2 }, 
                 textAlign: 'center',
-                backgroundColor: '#e8f5e8',
+                backgroundColor: theme.palette.mode === 'dark' ? '#1b5e20' : '#e8f5e8',
                 border: '2px solid #4CAF50',
                 minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
-                  color: '#4CAF50',
+                  color: theme.palette.mode === 'dark' ? '#A5D6A7' : '#4CAF50',
                   fontSize: { xs: '1.5rem', md: '2rem' }
                 }}>
                   {(stats.decisionCounts.Admis || 0).toLocaleString()}
@@ -217,13 +217,13 @@ function Statistics({ data }) {
               <Paper sx={{ 
                 p: { xs: 1.5, md: 2 }, 
                 textAlign: 'center',
-                backgroundColor: '#fff8e1',
+                backgroundColor: theme.palette.mode === 'dark' ? '#663c00' : '#fff8e1',
                 border: '2px solid #FFC107',
                 minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
-                  color: '#FFC107',
+                  color: theme.palette.mode === 'dark' ? '#FFD54F' : '#FFC107',
                   fontSize: { xs: '1.5rem', md: '2rem' }
                 }}>
                   {(stats.decisionCounts.Sessionnaire || 0).toLocaleString()}
@@ -239,13 +239,13 @@ function Statistics({ data }) {
               <Paper sx={{ 
                 p: { xs: 1.5, md: 2 }, 
                 textAlign: 'center',
-                backgroundColor: '#ffebee',
+                backgroundColor: theme.palette.mode === 'dark' ? '#5d1a1a' : '#ffebee',
                 border: '2px solid #F44336',
                 minWidth: '120px',
               }}>
                 <Typography variant="h4" sx={{ 
                   fontWeight: 'bold', 
-                  color: '#F44336',
+                  color: theme.palette.mode === 'dark' ? '#EF9A9A' : '#F44336',
                   fontSize: { xs: '1.5rem', md: '2rem' }
                 }}>
                   {(stats.decisionCounts.Ajourné || 0).toLocaleString()}
@@ -262,13 +262,13 @@ function Statistics({ data }) {
                 <Paper sx={{ 
                   p: { xs: 1.5, md: 2 }, 
                   textAlign: 'center',
-                  backgroundColor: '#f5f5f5',
+                  backgroundColor: theme.palette.mode === 'dark' ? '#424242' : '#f5f5f5',
                   border: '2px solid #9E9E9E',
                   minWidth: '120px',
                 }}>
                   <Typography variant="h4" sx={{ 
                     fontWeight: 'bold', 
-                    color: '#9E9E9E',
+                    color: theme.palette.mode === 'dark' ? '#BDBDBD' : '#9E9E9E',
                     fontSize: { xs: '1.5rem', md: '2rem' }
                   }}>
                     {stats.decisionCounts.Absent.toLocaleString()}
@@ -286,12 +286,13 @@ function Statistics({ data }) {
                 <Paper sx={{ 
                   p: { xs: 1.5, md: 2 }, 
                   textAlign: 'center',
-                  backgroundColor: '#e3f2fd',
-                  border: '2px solid #2196F3'
+                  backgroundColor: theme.palette.mode === 'dark' ? '#0d47a1' : '#e3f2fd',
+                  border: '2px solid #2196F3',
+                  minWidth: '120px',
                 }}>
                   <Typography variant="h4" sx={{ 
                     fontWeight: 'bold', 
-                    color: '#2196F3',
+                    color: theme.palette.mode === 'dark' ? '#90CAF9' : '#2196F3',
                     fontSize: { xs: '1.5rem', md: '2rem' }
                   }}>
                     {stats.decisionCounts.Autre.toLocaleString()}
@@ -357,8 +358,8 @@ function Statistics({ data }) {
                       labelLine={false}
                       outerRadius={isMobile ? 50 : 80}
                       dataKey="value"
-                      label={({ name, percent, count }) => 
-                        isMobile ? `${percent.toFixed(0)}%` : `${name}: ${count} (${percent.toFixed(1)}%)`
+                      label={({ name, percent, count, value }) => 
+                        isMobile ? `${value.toFixed(0)}%` : `${name}: ${count} (${value.toFixed(0)}%)`
                       }
                     >
                       {stats.decisionData.map((entry, index) => (
@@ -369,7 +370,7 @@ function Statistics({ data }) {
                       ))}
                     </Pie>
                     <Tooltip formatter={(value, name, props) => [
-                      `${value.toFixed(1)}% (${props.payload.count} étudiants)`, 
+                      `${value.toFixed(0)}% (${props.payload.count} étudiants)`, 
                       name
                     ]} />
                     {!isMobile && <Legend />}
