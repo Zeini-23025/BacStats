@@ -27,6 +27,9 @@ Une application web React moderne pour visualiser et analyser les résultats de 
 
 ```
 bac-analytics-app/
+├── data/
+│   ├── RESULTATS_BAC_2024_SESSION_NORMALE.csv      # Données brutes des résultats du BAC (CSV)
+│   └── RESULTATS_BAC_2024_SESSION_NORMALE.xlsx     # Données brutes des résultats du BAC (Excel)
 ├── public/
 │   ├── results.json          # Données JSON des résultats du BAC
 │   └── ...                   # Ressources statiques

@@ -24,6 +24,6 @@ def convert_csv_to_json(csv_file_path, json_file_path):
         print(f"Erreur lors de l'écriture du fichier JSON : {e}")
 
 if __name__ == "__main__":
-    CSV_FILE = 'RESULTATS_BAC_2024_SESSION_NORMALE.csv'
-    JSON_FILE = 'results.json'
+    CSV_FILE = 'data/RESULTATS_BAC_2024_SESSION_NORMALE.csv'
+    JSON_FILE = 'data/results.json'
     convert_csv_to_json(CSV_FILE, JSON_FILE)
