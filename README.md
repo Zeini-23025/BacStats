@@ -108,7 +108,7 @@ Le script `convert_to_json.py` convertit les données CSV brutes du BAC en forma
 [![GitHub](https://img.shields.io/badge/GitHub-Zeini--23025-black?style=flat&logo=github)](https://github.com/Zeini-23025)
 <br>
 **Tahre Babah** 
-[![GitHub](https://img.shields.io/badge/GitHub-Zeini--23025-black?style=flat&logo=github)](https://github.com/Tahre04)
+[![GitHub](https://img.shields.io/badge/GitHub-Tahre04-black?style=flat&logo=github)](https://github.com/Tahre04)
 
 
 
